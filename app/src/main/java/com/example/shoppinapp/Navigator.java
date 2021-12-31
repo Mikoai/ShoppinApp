@@ -155,7 +155,7 @@ public class Navigator {
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
 
         if(Math.abs(currentPosition[1] - position2be[1]) % 3 == 0){
-            if(currentPosition[0] == height-1){
+            if(currentPosition[0] == height-1 || currentPosition[0] == 1){
                 lastPosition = new int[]{currentPosition[0], currentPosition[1]};
                 currentPosition = new int[]{currentPosition[0], position2be[1]};
             } else {
@@ -164,11 +164,11 @@ public class Navigator {
                 currentPosition = new int[]{currentPosition[0], position2be[1]};
             }
         } else{
-            Log.d("WTF", "Welp..."); //should never enter here
+            //Log.d("WTF", "Welp..."); //should never enter here
             //currentPosition = new int[]{currentPosition[0], position2be[1]};
         }
         drawLineOnMap(canvas, bitmap);
-        Log.d("Next line end X", currentPosition[0] + ", " + currentPosition[1]);
+        //Log.d("Next line end X", currentPosition[0] + ", " + currentPosition[1]);
     }
 
     private void moveY(int[] position2be){
@@ -187,8 +187,13 @@ public class Navigator {
             currentPosition = new int[]{currentPosition[0] - (currentPosition[0] - position2be[0]), currentPosition[1]};
         }
 
+        //if for some reason Y is out of boundries, adjust it
+        if(currentPosition[0] < 1){
+            currentPosition = new int[]{1, currentPosition[1]};
+        }
+
         drawLineOnMap(canvas, bitmap);
-        Log.d("Next line end Y", currentPosition[0] + ", " + currentPosition[1]);
+        //Log.d("Next line end Y", currentPosition[0] + ", " + currentPosition[1]);
     }
 
     //for now return next point and not the path to it
@@ -233,7 +238,7 @@ public class Navigator {
         for(int i = 0; i < itemsCategories.size(); i++){
             navigate2next();
             drawMarkOnMap();
-            Log.d("PitStop "+ (i + 1) + ": ", "" + currentPosition[0] + ", " + currentPosition[1]);
+            //Log.d("PitStop "+ (i + 1) + ": ", "" + currentPosition[0] + ", " + currentPosition[1]);
         }
 
         navigate2exit();
@@ -293,7 +298,7 @@ public class Navigator {
 //        for (int i = 0; i < height; i++) {
 //            for (int j = 0; j < width; j++) {
 //                this.shopLayout[i][j] = shopLayout.get(i).get(j);
-//                Log.d("TAB values", this.shopLayout[i][j] + " ");
+//                //Log.d("TAB values", this.shopLayout[i][j] + " ");
 //            }
 //        }
 //    }
