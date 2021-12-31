@@ -25,8 +25,7 @@ public class Navigator {
     int[][] shopLayout = new int[height][width];
     Dictionary categoriesPathPoint = new Hashtable();
 
-    //start and finish are out of shopping area
-    int[] currentPosition = {14, 7};
+    int[] currentPosition = {13, 7};
     int[] exitPosition = {13, 1};
     int[] lastPosition;
 
@@ -179,6 +178,8 @@ public class Navigator {
             currentPosition = new int[]{(currentPosition[0] - 3), currentPosition[1]};
         } else if(Math.abs(currentPosition[0] - position2be[0]) > 4){
             currentPosition = new int[]{7, currentPosition[1]};
+        } else if(Math.abs(currentPosition[0] - position2be[0]) == 3 || Math.abs(currentPosition[0] - position2be[0]) == 2){
+            currentPosition = new int[]{currentPosition[0] - (currentPosition[0] - position2be[0]), currentPosition[1]};
         }
 
         drawLineOnMap(canvas, bitmap);
