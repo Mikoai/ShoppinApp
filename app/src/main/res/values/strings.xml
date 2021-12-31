@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ShoppinApp</string>
+    <string name="shoppinListBtn">Lista Zakupów</string>
+    <string name="supermarketsBtn">Znajdź w sklepie</string>
+    <string name="addItemHint">Dodaj artykuł</string>
+    <string name="unitsHint">szt, kg, l, ml</string>
+    <string name="itemName">Item name</string>
+    <string name="ItemValue">value</string>
+    <string name="Naviage">Wyznacz trasę</string>
+
+<!--  Shop Fields IDs  -->
+<!--    <string name="fieldId0"> </string>-->
+<!--    <string name="fieldId1">path</string>-->
+<!--    <string name="fieldId2">Pieczywo</string>-->
+<!--    <string name="fieldId3">Słodycze</string>-->
+<!--    <string name="fieldId4">Owoce</string>-->
+<!--    <string name="fieldId5">Warzywa</string>-->
+<!--    <string name="fieldId6">Nabiał</string>-->
+<!--    <string name="fieldId7">Mięso</string>-->
+<!--    <string name="fieldId8">Alkohol</string>-->
+<!--    <string name="fieldId9">Napoje</string>-->
+<!--  Shop Fields IDs  -->
+
+</resources>
