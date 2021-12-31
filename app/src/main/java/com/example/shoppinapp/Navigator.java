@@ -155,7 +155,7 @@ public class Navigator {
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
 
         if(Math.abs(currentPosition[1] - position2be[1]) % 3 == 0){
-            if(currentPosition[0] == 13){
+            if(currentPosition[0] == height-1){
                 lastPosition = new int[]{currentPosition[0], currentPosition[1]};
                 currentPosition = new int[]{currentPosition[0], position2be[1]};
             } else {
