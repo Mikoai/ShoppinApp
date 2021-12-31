@@ -155,9 +155,14 @@ public class Navigator {
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
 
         if(Math.abs(currentPosition[1] - position2be[1]) % 3 == 0){
-            moveY(position2be);
-            lastPosition = new int[]{currentPosition[0], currentPosition[1]};
-            currentPosition = new int[]{currentPosition[0], position2be[1]};
+            if(currentPosition[0] == 13){
+                lastPosition = new int[]{currentPosition[0], currentPosition[1]};
+                currentPosition = new int[]{currentPosition[0], position2be[1]};
+            } else {
+                moveY(position2be);
+                lastPosition = new int[]{currentPosition[0], currentPosition[1]};
+                currentPosition = new int[]{currentPosition[0], position2be[1]};
+            }
         } else{
             Log.d("WTF", "Welp..."); //should never enter here
             //currentPosition = new int[]{currentPosition[0], position2be[1]};
