@@ -11,7 +11,7 @@
         android:id="@+id/shopImg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/navBtn"
+        app:layout_constraintBottom_toTopOf="@id/navigateBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,13 +19,26 @@
         android:scaleType="fitXY"/>
 
     <Button
-      android:id="@+id/navBtn"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/Naviage"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/navigateBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Naviage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/listBtn"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="1dp"/>
+
+    <Button
+        android:id="@+id/listBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/listButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/navigateBtn"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="2dp" />
 
 
 

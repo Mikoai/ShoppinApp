@@ -30,6 +30,7 @@ public class ShoppingList extends AppCompatActivity {
     EditText addItemTxt;
     ImageView addItemImg;
     ImageView addItemWithCamera;
+    ImageView naviBtn;
     public static String detectedItem;
     public static boolean isDetected = false;
 
@@ -53,10 +54,18 @@ public class ShoppingList extends AppCompatActivity {
         addItemWithCamera = findViewById(R.id.addPhotoImg);
         listView = findViewById(R.id.listOfItems);
         adapter = new ItemsListAdapter(getApplicationContext());
+        naviBtn = findViewById(R.id.naviBtn);
         listView.setAdapter(adapter);
+
 
         //load saved items from SharedPrefs
         loadItems();
+
+        naviBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Shop_navi.class);
+            startActivity(intent);
+            saveItems();
+        });
 
         addItemWithCamera.setOnClickListener(v -> {
             Intent intent = new Intent(this, CameraRecog.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -118,8 +127,7 @@ public class ShoppingList extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         saveItems();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Shop_navi.class);
         startActivity(intent);
-        finish();
     }
 }

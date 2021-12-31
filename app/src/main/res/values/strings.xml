@@ -7,6 +7,7 @@
     <string name="itemName">Item name</string>
     <string name="ItemValue">value</string>
     <string name="Naviage">Wyznacz trasę</string>
+    <string name="listButton">Lista zakupów</string>
 
 <!--  Shop Fields IDs  -->
 <!--    <string name="fieldId0"> </string>-->

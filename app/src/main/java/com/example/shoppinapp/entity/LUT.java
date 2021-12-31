@@ -30,7 +30,7 @@ public class LUT {
         idOfFields.add("Przyprawy");
     }
 
-    public String getCategoryOfItem(String item){
+    public String getCategoryOfItem(Item item){
         String categories = "chleb,bułka,bagietka\n" +
                 "cukierki,batoniki,ciasto,żelki\n" +
                 "jabłko,banan,mandarynka,pomarańcza\n" +
@@ -48,7 +48,7 @@ public class LUT {
         for (String line : lines) {
             String[] values = line.split(",");
             for(String str : values){
-                if(str.equals(item)){
+                if(str.equals(item.getName()) && !item.isDone){
                     return idOfFields.get(counter);
                 }
             }
@@ -85,8 +85,8 @@ public class LUT {
         List<Integer> listNoDubplicates = new ArrayList<>();
 
         for(Item i : ShoppingList.itemsListArray){
-            if(!getCategoryOfItem(i.getName()).equals("")){
-                list.add(idOfFields.indexOf(getCategoryOfItem(i.getName())));
+            if(!getCategoryOfItem(i).equals("")){
+                list.add(idOfFields.indexOf(getCategoryOfItem(i)));
             }
 
             //Log.d("Category", idOfFields.indexOf(getCategoryOfItem(i.getName())) + " = " + getCategoryOfItem(i.getName()) + " - " + i.getName());

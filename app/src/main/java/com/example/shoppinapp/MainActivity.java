@@ -11,19 +11,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button shopListBtn = findViewById(R.id.shoppingListBtn);
-        Button shopNaviBtn = findViewById(R.id.storeBtn);
 
-        shopListBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ShoppingList.class);
-            startActivity(intent);
-        });
+        Intent intent = new Intent(this, ShoppingList.class);
+        startActivity(intent);
 
-        shopNaviBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Shop_navi.class);
-            startActivity(intent);
-        });
+//        setContentView(R.layout.activity_main);
+//        Button shopListBtn = findViewById(R.id.shoppingListBtn);
+//        Button shopNaviBtn = findViewById(R.id.storeBtn);
+//
+//        shopListBtn.setOnClickListener(v -> {
+//            Intent intent = new Intent(this, ShoppingList.class);
+//            startActivity(intent);
+//        });
+//
+//        shopNaviBtn.setOnClickListener(v -> {
+//            Intent intent = new Intent(this, Shop_navi.class);
+//            startActivity(intent);
+//        });
 
     }
 }
