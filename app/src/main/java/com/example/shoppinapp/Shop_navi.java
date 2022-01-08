@@ -51,7 +51,7 @@ public class Shop_navi extends AppCompatActivity {
         bitmap = Bitmap.createBitmap(shopImage.getWidth(), shopImage.getHeight(),  Bitmap.Config.RGB_565);
         canvas  = new Canvas(bitmap);
 
-        makeToast("Rysowanie trasy...");
+        makeToast("Wyznaczanie trasy...");
         navi = new Navigator(listOfCategories, shopImage, canvas, bitmap);
 
         shopImage.setImageBitmap(navi.navigate());

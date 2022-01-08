@@ -76,7 +76,7 @@ public class ShoppingList extends AppCompatActivity {
 
         addItemImg.setOnClickListener(v -> {
             String newItemTxt = addItemTxt.getText().toString();
-            if(newItemTxt.length() < 3) makeToast("Enter valid item");
+            if(newItemTxt.length() < 3) makeToast("Wprowadź poprawną nazwę");
             else {
                 addItemToList(newItemTxt);
                 addItemTxt.setText("");
@@ -95,7 +95,7 @@ public class ShoppingList extends AppCompatActivity {
         itemsListArray.add(new Item(item));
         saveItems();
         adapter.notifyDataSetChanged();
-        makeToast("Added: " + item);
+        makeToast("Dodano: " + item);
     }
 
     public void makeToast(String s){

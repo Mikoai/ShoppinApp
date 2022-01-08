@@ -47,7 +47,6 @@
             android:layout_toRightOf="@+id/addImg"
             android:src="@drawable/ic_camera" />
 
-
     </RelativeLayout>
 
     <ListView

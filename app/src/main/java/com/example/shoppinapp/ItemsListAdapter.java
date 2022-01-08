@@ -89,11 +89,11 @@ public class ItemsListAdapter extends BaseAdapter {
         //delete item on double click
         holder.itemName.setOnClickListener(v -> {
             if((SystemClock.elapsedRealtime() - timestampLastClick) < doubleClickQualificationSpanInMillis) {
-                makeToast(itemsListArray.get(itemsListArray.size() - (position + 1)).getName() + " deleted!");
+                makeToast("Usunięto " + itemsListArray.get(itemsListArray.size() - (position + 1)).getName());
                 itemsListArray.remove(itemsListArray.size() - (position + 1));
                 saveItems();
                 notifyDataSetChanged();
-            } else makeToast(itemsListArray.get(itemsListArray.size() - (position + 1)).getName());
+            } else makeToast("Kliknij dwukrotnie aby usunąć"); // for item name - itemsListArray.get(itemsListArray.size() - (position + 1)).getName()
             timestampLastClick = SystemClock.elapsedRealtime();
         });
 
