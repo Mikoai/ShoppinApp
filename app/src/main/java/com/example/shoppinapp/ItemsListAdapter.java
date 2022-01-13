@@ -27,7 +27,7 @@ public class ItemsListAdapter extends BaseAdapter {
     Toast t;
 
     //Displaying reversed array for better usability,
-    //to revert replace 'itemsListArray.size() - (position + 1)' with 'position'
+    //to revert, replace 'itemsListArray.size() - (position + 1)' with 'position'
 
     public ItemsListAdapter(Context context){
         this.context = context;
@@ -57,7 +57,7 @@ public class ItemsListAdapter extends BaseAdapter {
     @SuppressLint({"SetTextI18n", "ViewHolder", "InflateParams"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder= new ViewHolder();
+        ViewHolder holder = new ViewHolder();
 
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         convertView = mInflater.inflate(R.layout.itemslist_item, null);
@@ -71,7 +71,7 @@ public class ItemsListAdapter extends BaseAdapter {
         holder.itemCountValue.setText(itemsListArray.get(itemsListArray.size() - (position + 1)).getQuantity());
 
 
-        //set values, select ImageView as checkmark depending on item state isDone
+        //set values, select ImageView as checkmark depending on item state under isDone value
         if (itemsListArray.get(itemsListArray.size() - (position + 1)).isDone()) holder.checkMark.setImageResource(R.drawable.ic_full_check);
         else holder.checkMark.setImageResource(R.drawable.ic_empty_check);
 
@@ -83,7 +83,6 @@ public class ItemsListAdapter extends BaseAdapter {
                 itemsListArray.get(itemsListArray.size() - (position + 1)).setDone(true);
             }
             notifyDataSetChanged();
-
         });
 
         //delete item on double click

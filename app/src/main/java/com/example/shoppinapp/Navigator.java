@@ -43,7 +43,7 @@ public class Navigator {
     }
 
     private void loadShop(){
-        //starting point = [13][7], ending point = [13][1]
+        // starting point = [13][7], ending point = [13][1]
         String shop =   "0,0,0,0,6,0,0,0,0\n" +
                         "0,1,1,1,1,1,1,1,0\n" +
                         "0,1,0,0,1,0,0,1,0\n" +
@@ -62,7 +62,7 @@ public class Navigator {
         String[] lines = shop.split("\n");
         String[] values;
 
-        //save shop to array[][]
+        // save shop to array[][]
         for (int y = 0; y < height; y++) {
             values = lines[y].split(",");
             for (int x = 0; x < width; x++) {
@@ -70,7 +70,7 @@ public class Navigator {
             }
         }
 
-        //if pointID is category, find closes path point and add to dict
+        // if pointID is category, find closes path point and add to dict
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if(shopLayout[y][x] > 1)
@@ -84,23 +84,22 @@ public class Navigator {
     }
 
     private int[] closestPathPointXY(int[] categoryXY){
-
-        //check for border points
+        // check for border points
         if(categoryXY[0] == 0 || categoryXY[0] == height-1 || categoryXY[1] == 0 || categoryXY[1] == width-1)
         {
-            //check for border Y
+            // check for border Y
             if (categoryXY[1] == 0) {
                 return new int[]{categoryXY[0], 1};
             } else if (categoryXY[1] == width - 1)
                 return new int[]{categoryXY[0], width - 2};
 
-            //check for border X
+            // check for border X
             if (categoryXY[0] == 0)
                 return new int[]{1, categoryXY[1]};
             else if (categoryXY[0] == height - 1)
                 return new int[]{height - 2, categoryXY[1]};
         } else{
-            //check if surrounding points id == 1
+            // check if surrounding points id == 1
             if(shopLayout[categoryXY[0]-1][categoryXY[1]] == 1) {
                 return new int[]{categoryXY[0]-1, categoryXY[1]};
             } else if(shopLayout[categoryXY[0]+1][categoryXY[1]] == 1){
@@ -116,13 +115,13 @@ public class Navigator {
     }
 
     private int manhattanDistance(int categoryId, int[] startingPoint){
-        //return Manhattan distance between points
+        // return Manhattan distance between points
 
         int[] endPoint = (int[]) categoriesPathPoint.get(categoryId);
 
         int md = Math.abs(startingPoint[0] - endPoint[0]) + Math.abs(startingPoint[1] - endPoint[1]);
 
-        //if endPoint is literally behind, add 6 (distance)
+        // if endPoint is literally behind, add 6 (distance)
         if(md == 3){
             if(startingPoint[1] == endPoint[1]){
                 return md;
@@ -140,7 +139,7 @@ public class Navigator {
         for(int cat : left2navigate){
             int temp = manhattanDistance(cat, currentPosition);
 
-            //if category point is the same as current one, skip it
+            // if category point is the same as current one, skip it
             if(temp < md){
                 md = temp;
                 closestCategoryId = cat;
@@ -154,18 +153,20 @@ public class Navigator {
     private void moveX(int[] position2be){
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
 
+        // just to make sure next point is in any alley, should always be true
         if(Math.abs(currentPosition[1] - position2be[1]) % 3 == 0){
+            // if currentPosition is on the most up/down path (e.g. at entrance or near freezers at the back)
             if(currentPosition[0] == height-1 || currentPosition[0] == 1){
                 lastPosition = new int[]{currentPosition[0], currentPosition[1]};
                 currentPosition = new int[]{currentPosition[0], position2be[1]};
-            } else {
+            } else {// if currentPosition is somewhere other than one of 'Y highways' first move in Y, then align in X
                 moveY(position2be);
                 lastPosition = new int[]{currentPosition[0], currentPosition[1]};
                 currentPosition = new int[]{currentPosition[0], position2be[1]};
             }
         } else{
-            //Log.d("WTF", "Welp..."); //should never enter here
-            //currentPosition = new int[]{currentPosition[0], position2be[1]};
+            //Log.d("WTF", "Welp..."); // should never enter here
+            // currentPosition = new int[]{currentPosition[0], position2be[1]};
         }
         drawLineOnMap(canvas, bitmap);
         //Log.d("Next line end X", currentPosition[0] + ", " + currentPosition[1]);
@@ -174,20 +175,23 @@ public class Navigator {
     private void moveY(int[] position2be){
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
 
+        // if X is the same, move on Y
         if(currentPosition[1] == position2be[1]){
-            //if X is same, move straight
             currentPosition = new int[]{currentPosition[0] - ((currentPosition[0] - position2be[0])), currentPosition[1]};
-        } else if(currentPosition[0] - position2be[0] == -1 || currentPosition[0] - position2be[0] == 0){
+        } // if next point Y differs by 1 or less, means its on the other side, move in Y towards it
+        else if(currentPosition[0] - position2be[0] == -1 || currentPosition[0] - position2be[0] == 0){
             currentPosition = new int[]{(currentPosition[0] - (3 + (currentPosition[0] - position2be[0]))), currentPosition[1]};
-        } else if(currentPosition[0] - position2be[0] == 1){
+        } // if next point is on the other side, on the wall shelf, move Y up
+        else if(currentPosition[0] - position2be[0] == 1){
             currentPosition = new int[]{(currentPosition[0] - 3), currentPosition[1]};
-        } else if(Math.abs(currentPosition[0] - position2be[0]) > 4){
+        } // if next point is more than 7 away in Y, means far, move to 'Y highway' at Y = 7
+        else if(Math.abs(currentPosition[0] - position2be[0]) > 4){
             currentPosition = new int[]{7, currentPosition[1]};
-        } else if(Math.abs(currentPosition[0] - position2be[0]) == 3 || Math.abs(currentPosition[0] - position2be[0]) == 2){
+        } // if next point is 2 or 3 away in Y (X is aligned at this point), move the difference in Y
+        else if(Math.abs(currentPosition[0] - position2be[0]) == 3 || Math.abs(currentPosition[0] - position2be[0]) == 2){
             currentPosition = new int[]{currentPosition[0] - (currentPosition[0] - position2be[0]), currentPosition[1]};
         }
-
-        //if for some reason Y is out of boundries, adjust it
+        // if for some reason Y is out of boundries, adjust it
         if(currentPosition[0] < 1){
             currentPosition = new int[]{1, currentPosition[1]};
         }
@@ -196,14 +200,12 @@ public class Navigator {
         //Log.d("Next line end Y", currentPosition[0] + ", " + currentPosition[1]);
     }
 
-    //for now return next point and not the path to it
     public void navigate2next(){
-
         int[] positionToBe = nextClosestPoint(currentPosition);
 
-        //make path from currentPosition to positionToBe
+        // make path from currentPosition to positionToBe
         while(currentPosition[0] != positionToBe[0] || currentPosition[1] != positionToBe[1]){
-            //first align on X axis, then on Y axis
+            // first align on X axis, then on Y axis
             if(currentPosition[1] == positionToBe[1]){
                 moveY(positionToBe);
             } else {
@@ -213,16 +215,17 @@ public class Navigator {
     }
 
     public void navigate2exit(){
-
+        // move to 'Y highway' near checkout
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
         currentPosition = new int[]{exitPosition[0], currentPosition[1]};
         drawLineOnMap(canvas, bitmap);
 
+        // move to checkout
         lastPosition = new int[]{currentPosition[0], currentPosition[1]};
         currentPosition = new int[]{currentPosition[0], exitPosition[1]};
         drawLineOnMap(canvas, bitmap);
 
-        //draw BLUE circle for Cashout
+        // draw RED circle for Cashout
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         paint.setStrokeWidth(50);
@@ -243,7 +246,6 @@ public class Navigator {
 
         navigate2exit();
 
-        //TODO: drawing!
         return this.bitmap;
     }
 
@@ -272,7 +274,7 @@ public class Navigator {
     }
 
 
-    //make navigate function and drawing function
+    // make navigate function and drawing function
 
 //    private void loadShop(){
 //        String[] line = null;
@@ -304,8 +306,8 @@ public class Navigator {
 //    }
 
 //    private void moveX(int[] position2be){
-//        //if dest. X is not current X AND next position (left/right) is 1, move there
-//        //otherwise move on Y
+//        // if dest. X is not current X AND next position (left/right) is 1, move there
+//        // otherwise move on Y
 //        if(currentPosition[1] > position2be[1]){
 //            if(shopLayout[currentPosition[0]][currentPosition[1]-1] == 1){
 //                currentPosition = new int[]{currentPosition[0], currentPosition[1]-1};
@@ -318,7 +320,7 @@ public class Navigator {
 //    }
 //
 //    private void moveY(int[] position2be){
-//        //if dest. Y is not current Y AND next position (up/down) is 1, move there
+//        // if dest. Y is not current Y AND next position (up/down) is 1, move there
 //        if(currentPosition[0] > position2be[0]){
 //            if(shopLayout[currentPosition[0]-1][currentPosition[1]] == 1){
 //                currentPosition = new int[]{currentPosition[0]-1, currentPosition[1]};
@@ -331,9 +333,9 @@ public class Navigator {
 //    }
     //    public void navigate2exit(){
 //        currentPosition = new int[]{exitPosition[0], currentPosition[1]};
-//        //draw line
+//        // draw line
 //        currentPosition = new int[]{currentPosition[0], exitPosition[1]};
-//        //draw line
+//        // draw line
 //    }
 
 

@@ -37,8 +37,7 @@ public class CameraRecog extends Activity implements CameraBridgeViewBase.CvCame
         @Override
         public void onManagerConnected(int status) {
             switch (status){
-                case LoaderCallbackInterface
-                        .SUCCESS:{
+                case LoaderCallbackInterface.SUCCESS:{
                     Log.i(TAG, "OpenCV loaded");
                     mOpenCvCameraView.enableView();
                 }
@@ -78,7 +77,7 @@ public class CameraRecog extends Activity implements CameraBridgeViewBase.CvCame
             od = new ObjectDetector(getAssets(), "custom_model.tflite", "custom_label.txt", 320);
             Log.d(TAG, "Model loaded");
         } catch (IOException e){
-            Log.d(TAG, "Error loading model, contact dev LOL");
+            Log.d(TAG, "Error loading model");
             e.printStackTrace();
         }
         Log.i("camresponse", "isDetected: " + ShoppingList.isDetected + ", item name: " + ShoppingList.detectedItem);
@@ -118,7 +117,7 @@ public class CameraRecog extends Activity implements CameraBridgeViewBase.CvCame
     @Override
     public void onCameraViewStarted(int width, int height) {
         mRgba = new Mat(height,width, CvType.CV_8UC4);
-        mGray = new Mat(height,width,CvType.CV_8UC1);
+        //mGray = new Mat(height,width,CvType.CV_8UC1);
     }
 
     @Override
@@ -129,7 +128,7 @@ public class CameraRecog extends Activity implements CameraBridgeViewBase.CvCame
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
-        mGray = inputFrame.gray();
+        //mGray = inputFrame.gray();
 
 
         Mat out = new Mat();

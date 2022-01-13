@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/drawable/ic_add_list.xml" value="0.5911458333333334" />
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/drawable/ic_camera.xml" value="0.5911458333333334" />
+        <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/drawable/ic_empty_check.xml" value="0.5911458333333334" />
+        <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/drawable/ic_full_check.xml" value="0.5911458333333334" />
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/drawable/ic_shop_list.xml" value="0.5911458333333334" />
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/layout/activity_camera_recog.xml" value="0.4302536231884058" />
-        <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/layout/activity_main.xml" value="0.575" />
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/layout/activity_shop_navi.xml" value="0.4411231884057971" />
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/layout/activity_shopping_list.xml" value="0.4651866801210898" />
         <entry key="..\:/UZ/ZZPracaDyplomowa/Eng/ShoppinApp/app/src/main/res/layout/itemslist_item.xml" value="0.4302536231884058" />

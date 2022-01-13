@@ -88,8 +88,8 @@ public class ObjectDetector {
     }
 
     public Mat recognizeImage(Mat mat_image){
-        // Rotate original image by 90 degree get get portrait frame
 
+        // Rotate original image by 90 degree get get portrait frame
         Mat rotated_mat_image = new Mat();
 
         Mat a = mat_image.t();
@@ -111,18 +111,15 @@ public class ObjectDetector {
         ByteBuffer byteBuffer = convertBitmapToByteBuffer(scaledBitmap);
 
         // defining output
-        //  float[][][]result = new float[1][10][4];
+        // float[][][]result = new float[1][10][4];
         Object[] input = new Object[1];
         input[0] = byteBuffer;
 
         Map<Integer, Object> output_map = new TreeMap<>();
 
         float[][][]boxes  = new float[1][10][4];
-        // 4: there coordinate in image
         float[][] scores = new float[1][10];
-        // stores scores of 10 object
         float[][] classes = new float[1][10];
-        // stores class of object
 
         // add it to object_map;
         output_map.put(0, boxes);
@@ -144,8 +141,8 @@ public class ObjectDetector {
             // define threshold for score
             if(score_value > 0.8){
                 Object box1 = Array.get(Array.get(value,0),i);
-                // multiplying it with original height and width of frame
 
+                // multiplying it with original height and width of frame
                 float top = (float) Array.get(box1,0) * height;
                 float left = (float) Array.get(box1,1) * width;
                 float bottom = (float) Array.get(box1,2) * height;
@@ -161,8 +158,8 @@ public class ObjectDetector {
                 foundItem = true;
                 //Log.i("Detector", "Score value: " + score_value + ", item: " + labelList.get((int) class_value) + ", isDetected: " + isDetected);
             }
-
         }
+
         // before returning rotate back by -90 degree
         Mat b = rotated_mat_image.t();
         Core.flip(b,mat_image,0);
@@ -195,7 +192,6 @@ public class ObjectDetector {
                     byteBuffer.put((byte) (val&0xFF));
                 }
                 else {
-                    // paste this
                     byteBuffer.putFloat((((val >> 16) & 0xFF)) / 255.0f);
                     byteBuffer.putFloat((((val >> 8) & 0xFF)) / 255.0f);
                     byteBuffer.putFloat((((val) & 0xFF)) / 255.0f);

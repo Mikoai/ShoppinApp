@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class LUT {
 
     ArrayList<String> idOfFields = new ArrayList<>();
+    String categories;
 
     //File catFile = new File("files/categoryOfItems.csv");
 
@@ -28,10 +29,8 @@ public class LUT {
         idOfFields.add("Higiena");
         idOfFields.add("Mrożone");
         idOfFields.add("Przyprawy");
-    }
 
-    public String getCategoryOfItem(Item item){
-        String categories = "chleb,bułka,bagietka\n" +
+        categories = "chleb,bułka,bagietka\n" +
                 "cukierki,batoniki,ciasto,żelki\n" +
                 "jabłko,banan,mandarynka,pomarańcza\n" +
                 "pomidor,czosnek,papryka,ziemniak,cebula\n" +
@@ -42,9 +41,12 @@ public class LUT {
                 "mydło,chusteczki,papier toaletowy,szczoteczki\n" +
                 "lody,warzywa mrożone,pizza\n" +
                 "pieprz,sól,cukier,mąka,proszek do pieczenia";
+    }
 
+    public String getCategoryOfItem(Item item){
         String[] lines = categories.split("\n");
         int counter = 2;
+
         for (String line : lines) {
             String[] values = line.split(",");
             for(String str : values){
@@ -82,7 +84,6 @@ public class LUT {
 
     public List<Integer> getArrayItemsCategoriesIds(){
         ArrayList<Integer> list = new ArrayList<>();
-        List<Integer> listNoDubplicates = new ArrayList<>();
 
         for(Item i : ShoppingList.itemsListArray){
             if(!getCategoryOfItem(i).equals("")){
@@ -92,9 +93,7 @@ public class LUT {
             //Log.d("Category", idOfFields.indexOf(getCategoryOfItem(i.getName())) + " = " + getCategoryOfItem(i.getName()) + " - " + i.getName());
         }
 
-        listNoDubplicates = list.stream().distinct().collect(Collectors.toList());
-
-        return  listNoDubplicates;
+        return  list.stream().distinct().collect(Collectors.toList());
     }
 
 }
